@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémons Iniciais de Kanto</title>
+    <link rel="stylesheet" href="static/estilo.css">
+</head>
+<body>
+{#====================================================#}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul id="messages" class="list-unstyled">
+            {% for message in messages %}
+                <li class="alert alert-success">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+{% endwith %}
+{#====================================================#}
+
+    <div>
+        <h1>{{ Titulo }}</h1> {# variavel que consegue passar pelo python #}
+    </div>
+
+    {%  for Pokemons in ListaPokemons %}
+
+    <div class="pokemon-card">
+        <h2>Nome: {{ Pokemons.nome }}</h2>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{Pokemons.numero}}.png">
+        <p>Número da pokedex: {{ Pokemons.numero }}</p>
+        <p>Tipo: {{ Pokemons.tipo }}</p>
+        <p>Altura: {{ Pokemons.altura }}m</p>
+        <p>peso: {{ Pokemons.peso }}kg</p>
+        <br>
+        <a href="excluir/{{ Pokemons.numero }}">Excluir</a>
+        <a href="editar/{{ Pokemons.numero }}">Editar</a>
+    </div>
+
+    {% endfor %}
+</body>
+</html>
